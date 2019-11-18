@@ -1,4 +1,12 @@
-import Joi = require('@hapi/joi');
+import Joi, {
+    Schema, SchemaLike, AnySchema, NumberSchema, StringSchema, ArraySchema,
+    BooleanSchema, BinarySchema, DateSchema, FunctionSchema, ObjectSchema,
+    Reference, Description, ValidationOptions, RenameOptions, EmailOptions,
+    DomainOptions, HexOptions, IpOptions, UriOptions, Base64Options,
+    DataUriOptions, WhenOptions, WhenSchemaOptions, ReferenceOptions,
+    StringRegexOptions, ValidationError, ValidationErrorItem,
+    ValidationErrorFunction, SchemaMap, ValidationResult
+} from '@hapi/joi';
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
@@ -19,27 +27,27 @@ declare const expArr: RegExp[];
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let schema: Joi.Schema = Joi.any();
-declare const schemaLike: Joi.SchemaLike;
+let schema: Schema = Joi.any();
+declare const schemaLike: SchemaLike;
 
-let anySchema: Joi.AnySchema = Joi.any();
-let numSchema: Joi.NumberSchema = Joi.number();
-let strSchema: Joi.StringSchema = Joi.string();
-let arrSchema: Joi.ArraySchema = Joi.array();
-let boolSchema: Joi.BooleanSchema = Joi.boolean();
-let binSchema: Joi.BinarySchema = Joi.binary();
-let dateSchema: Joi.DateSchema = Joi.date();
-let funcSchema: Joi.FunctionSchema = Joi.func();
-let objSchema: Joi.ObjectSchema = Joi.object();
+let anySchema: AnySchema = Joi.any();
+let numSchema: NumberSchema = Joi.number();
+let strSchema: StringSchema = Joi.string();
+let arrSchema: ArraySchema = Joi.array();
+let boolSchema: BooleanSchema = Joi.boolean();
+let binSchema: BinarySchema = Joi.binary();
+let dateSchema: DateSchema = Joi.date();
+let funcSchema: FunctionSchema = Joi.func();
+let objSchema: ObjectSchema = Joi.object();
 
-declare const schemaArr: Joi.Schema[];
+declare const schemaArr: Schema[];
 
-let ref: Joi.Reference = Joi.ref('test');
-let description: Joi.Description = {};
+let ref: Reference = Joi.ref('test');
+let description: Description = {};
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let validOpts: Joi.ValidationOptions = {};
+let validOpts: ValidationOptions = {};
 
 validOpts = { abortEarly: bool };
 validOpts = { convert: bool };
@@ -64,7 +72,7 @@ validOpts = {
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let renOpts: Joi.RenameOptions = {};
+let renOpts: RenameOptions = {};
 
 renOpts = { alias: bool };
 renOpts = { multiple: bool };
@@ -73,7 +81,7 @@ renOpts = { ignoreUndefined: bool };
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let emailOpts: Joi.EmailOptions = {};
+let emailOpts: EmailOptions = {};
 
 emailOpts = { allowUnicode: bool };
 emailOpts = { tlds: { allow: strArr } };
@@ -82,7 +90,7 @@ emailOpts = { tlds: false };
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let domainOpts: Joi.DomainOptions = {};
+let domainOpts: DomainOptions = {};
 
 domainOpts = { allowUnicode: bool };
 domainOpts = { tlds: { allow: strArr } };
@@ -90,13 +98,13 @@ domainOpts = { minDomainSegments: num };
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let hexOpts: Joi.HexOptions = {};
+let hexOpts: HexOptions = {};
 
 hexOpts = { byteAligned: bool };
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let ipOpts: Joi.IpOptions = {};
+let ipOpts: IpOptions = {};
 
 ipOpts = { version: str };
 ipOpts = { version: strArr };
@@ -104,7 +112,7 @@ ipOpts = { cidr: 'forbidden' };
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let uriOpts: Joi.UriOptions = {};
+let uriOpts: UriOptions = {};
 
 uriOpts = { scheme: str };
 uriOpts = { scheme: exp };
@@ -114,19 +122,19 @@ uriOpts = { domain: domainOpts };
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let base64Opts: Joi.Base64Options = {};
+let base64Opts: Base64Options = {};
 
 base64Opts = { paddingRequired: bool };
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let dataUriOpts: Joi.DataUriOptions = {};
+let dataUriOpts: DataUriOptions = {};
 
 dataUriOpts = { paddingRequired: bool };
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let whenOpts: Joi.WhenOptions = {
+let whenOpts: WhenOptions = {
     is: Joi.any(),
 };
 
@@ -137,7 +145,7 @@ whenOpts = { is: schemaLike, then: schemaLike, otherwise: schemaLike };
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let whenSchemaOpts: Joi.WhenSchemaOptions = {};
+let whenSchemaOpts: WhenSchemaOptions = {};
 
 whenSchemaOpts = { then: schema };
 whenSchemaOpts = { otherwise: schema };
@@ -145,23 +153,23 @@ whenSchemaOpts = { then: schemaLike, otherwise: schemaLike };
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let refOpts: Joi.ReferenceOptions = {};
+let refOpts: ReferenceOptions = {};
 
 refOpts = { separator: str };
 refOpts = { prefix: { local: str } };
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let stringRegexOpts: Joi.StringRegexOptions = {};
+let stringRegexOpts: StringRegexOptions = {};
 
 stringRegexOpts = { name: str };
 stringRegexOpts = { invert: bool };
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-declare const validErr: Joi.ValidationError;
-let validErrItem: Joi.ValidationErrorItem;
-let validErrFunc: Joi.ValidationErrorFunction;
+declare const validErr: ValidationError;
+let validErrItem: ValidationErrorItem;
+let validErrFunc: ValidationErrorFunction;
 
 validErrItem = {
     message: str,
@@ -211,7 +219,7 @@ anySchema = objSchema;
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-let schemaMap: Joi.SchemaMap = {};
+let schemaMap: SchemaMap = {};
 
 schemaMap = {
     a: numSchema,
@@ -938,7 +946,7 @@ schema = Joi.link(str);
             username: Joi.string().max(255).required(),
             password: Joi.string().pattern(/^[a-zA-Z0-9]{3,255}$/).required(),
         });
-        let result: Joi.ValidationResult;
+        let result: ValidationResult;
         let asyncResult: Promise<any>;
 
         value = schema.validate(value).value;
@@ -1031,7 +1039,7 @@ const defaultsJoi = Joi.defaults((schema) => {
         case 'string':
             return schema.allow('');
         case 'object':
-            return (schema as Joi.ObjectSchema).min(1);
+            return (schema as ObjectSchema).min(1);
         default:
             return schema;
     }
