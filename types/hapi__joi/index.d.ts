@@ -23,10 +23,12 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.8
 
+/* tslint:disable:strict-export-declare-modifiers */
+
 // TODO express type of Schema in a type-parameter (.default, .valid, .example etc)
 
 declare namespace Joi {
-    type Types =
+    export type Types =
     | 'any'
     | 'alternatives'
     | 'array'
@@ -40,11 +42,11 @@ declare namespace Joi {
     | 'string'
     | 'symbol';
 
-    type LanguageMessages = Record<string, string>;
+    export type LanguageMessages = Record<string, string>;
 
-    type PresenceMode = 'optional' | 'required' | 'forbidden';
+    export type PresenceMode = 'optional' | 'required' | 'forbidden';
 
-    interface ErrorFormattingOptions {
+    export interface ErrorFormattingOptions {
         /**
          * when true, error message templates will escape special characters to HTML entities, for security purposes.
          *
@@ -85,7 +87,7 @@ declare namespace Joi {
         wrapArrays?: boolean;
     }
 
-    interface ValidationOptions {
+    export interface ValidationOptions {
         /**
          * when true, stops validation on the first error, otherwise returns all the errors found.
          *
@@ -179,7 +181,7 @@ declare namespace Joi {
         stripUnknown?: boolean | { arrays?: boolean; objects?: boolean };
     }
 
-    interface AsyncValidationOptions extends ValidationOptions {
+    export interface AsyncValidationOptions extends ValidationOptions {
         /**
          * when true, warnings are returned alongside the value (i.e. `{ value, warning }`).
          *
@@ -188,7 +190,7 @@ declare namespace Joi {
         warnings?: boolean;
     }
 
-    interface RenameOptions {
+    export interface RenameOptions {
         /**
          * if true, does not delete the old key name, keeping both the new and old keys in place.
          *
@@ -215,7 +217,7 @@ declare namespace Joi {
         ignoreUndefined?: boolean;
     }
 
-    interface TopLevelDomainOptions {
+    export interface TopLevelDomainOptions {
         /**
          * - `true` to use the IANA list of registered TLDs. This is the default value.
          * - `false` to allow any TLD not listed in the `deny` list, if present.
@@ -228,7 +230,7 @@ declare namespace Joi {
         deny?: Set<string> | string[];
     }
 
-    interface HierarchySeparatorOptions {
+    export interface HierarchySeparatorOptions {
         /**
          * overrides the default `.` hierarchy separator. Set to false to treat the key as a literal value.
          *
@@ -237,7 +239,7 @@ declare namespace Joi {
         separator?: string | false;
     }
 
-    interface EmailOptions {
+    export interface EmailOptions {
         /**
          * If `true`, Unicode characters are permitted
          *
@@ -276,7 +278,7 @@ declare namespace Joi {
         minDomainSegments?: number;
     }
 
-    interface DomainOptions {
+    export interface DomainOptions {
         /**
          * If `true`, Unicode characters are permitted
          *
@@ -298,7 +300,7 @@ declare namespace Joi {
         minDomainSegments?: number;
     }
 
-    interface HexOptions {
+    export interface HexOptions {
         /**
          * hex decoded representation must be byte aligned.
          * @default false
@@ -306,7 +308,7 @@ declare namespace Joi {
         byteAligned?: boolean;
     }
 
-    interface IpOptions {
+    export interface IpOptions {
         /**
          * One or more IP address versions to validate against. Valid values: ipv4, ipv6, ipvfuture
          */
@@ -317,13 +319,13 @@ declare namespace Joi {
         cidr?: PresenceMode;
     }
 
-    type GuidVersions = 'uuidv1' | 'uuidv2' | 'uuidv3' | 'uuidv4' | 'uuidv5';
+    export type GuidVersions = 'uuidv1' | 'uuidv2' | 'uuidv3' | 'uuidv4' | 'uuidv5';
 
-    interface GuidOptions {
+    export interface GuidOptions {
         version: GuidVersions[] | GuidVersions;
     }
 
-    interface UriOptions {
+    export interface UriOptions {
         /**
          * Specifies one or more acceptable Schemes, should only include the scheme name.
          * Can be an Array or String (strings are automatically escaped for use in a Regular Expression).
@@ -354,7 +356,7 @@ declare namespace Joi {
         domain?: DomainOptions;
     }
 
-    interface DataUriOptions {
+    export interface DataUriOptions {
         /**
          * optional parameter defaulting to true which will require `=` padding if true or make padding optional if false
          *
@@ -363,7 +365,7 @@ declare namespace Joi {
         paddingRequired?: boolean;
     }
 
-    interface Base64Options extends Pick<DataUriOptions, 'paddingRequired'> {
+    export interface Base64Options extends Pick<DataUriOptions, 'paddingRequired'> {
         /**
          * if true, uses the URI-safe base64 format which replaces `+` with `-` and `\` with `_`.
          *
@@ -372,7 +374,7 @@ declare namespace Joi {
         urlSafe?: boolean;
     }
 
-    interface SwitchCases {
+    export interface SwitchCases {
         /**
          * the required condition joi type.
          */
@@ -383,7 +385,7 @@ declare namespace Joi {
         then: SchemaLike;
     }
 
-    interface SwitchDefault {
+    export interface SwitchDefault {
         /**
          * the alternative schema type if no cases matched.
          * Only one otherwise statement is allowed in switch as the last array item.
@@ -391,7 +393,7 @@ declare namespace Joi {
         otherwise: SchemaLike;
     }
 
-    interface WhenOptions {
+    export interface WhenOptions {
         /**
          * the required condition joi type.
          */
@@ -418,7 +420,7 @@ declare namespace Joi {
         break?: boolean;
     }
 
-    interface WhenSchemaOptions {
+    export interface WhenSchemaOptions {
         /**
          * the alternative schema type if the condition is true. Required if otherwise is missing.
          */
@@ -429,7 +431,7 @@ declare namespace Joi {
         otherwise?: SchemaLike;
     }
 
-    interface Cache {
+    export interface Cache {
         /**
          * Add an item to the cache.
          *
@@ -444,7 +446,7 @@ declare namespace Joi {
          */
         get(key: any): any;
     }
-    interface CacheProvisionOptions {
+    export interface CacheProvisionOptions {
         /**
          * number of items to store in the cache before the least used items are dropped.
          *
@@ -453,14 +455,14 @@ declare namespace Joi {
         max: number;
     }
 
-    interface CacheConfiguration {
+    export interface CacheConfiguration {
         /**
          * Provisions a simple LRU cache for caching simple inputs (`undefined`, `null`, strings, numbers, and booleans).
          */
         provision(options?: CacheProvisionOptions): void;
     }
 
-    interface CompileOptions {
+    export interface CompileOptions {
         /**
          * If true and the provided schema is (or contains parts) using an older version of joi, will return a compiled schema that is compatible with the older version.
          * If false, the schema is always compiled using the current version and if older schema components are found, an error is thrown.
@@ -468,7 +470,7 @@ declare namespace Joi {
         legacy: boolean;
     }
 
-    interface IsSchemaOptions {
+    export interface IsSchemaOptions {
         /**
          * If true, will identify schemas from older versions of joi, otherwise will throw an error.
          *
@@ -477,7 +479,7 @@ declare namespace Joi {
         legacy: boolean;
     }
 
-    interface ReferenceOptions extends HierarchySeparatorOptions {
+    export interface ReferenceOptions extends HierarchySeparatorOptions {
         /**
          * a function with the signature `function(value)` where `value` is the resolved reference value and the return value is the adjusted value to use.
          * Note that the adjust feature will not perform any type validation on the adjusted value and it must match the value expected by the rule it is used in.
@@ -538,7 +540,7 @@ declare namespace Joi {
         iterables?: boolean;
     }
 
-    interface StringRegexOptions {
+    export interface StringRegexOptions {
         /**
          * optional pattern name.
          */
@@ -552,7 +554,7 @@ declare namespace Joi {
         invert?: boolean;
     }
 
-    interface RuleOptions {
+    export interface RuleOptions {
         /**
          * if true, the rules will not be replaced by the same unique rule later.
          *
@@ -576,11 +578,11 @@ declare namespace Joi {
         warn?: boolean;
     }
 
-    interface JoiObject {
+    export interface JoiObject {
         isJoi: boolean;
     }
 
-    interface ErrorReport extends Error {
+    export interface ErrorReport extends Error {
         code: string;
         flags: Record<string, ExtensionFlag>;
         path: string;
@@ -590,7 +592,7 @@ declare namespace Joi {
         value: any;
     }
 
-    interface ValidationError extends Error, JoiObject {
+    export interface ValidationError extends Error, JoiObject {
         name: 'ValidationError';
 
         /**
@@ -607,44 +609,44 @@ declare namespace Joi {
         _object: any;
     }
 
-    interface ValidationErrorItem {
+    export interface ValidationErrorItem {
         message: string;
         path: Array<string | number>;
         type: string;
         context?: Context;
     }
 
-    type ValidationErrorFunction = (errors: ValidationErrorItem[]) => string | ValidationErrorItem | Error;
+    export type ValidationErrorFunction = (errors: ValidationErrorItem[]) => string | ValidationErrorItem | Error;
 
-    interface ValidationResult {
+    export interface ValidationResult {
         error: ValidationError;
         errors: ValidationError;
         warning: ValidationError;
         value: any;
     }
 
-    interface CreateErrorOptions {
+    export interface CreateErrorOptions {
         flags?: boolean;
         messages?: LanguageMessages;
     }
 
-    interface ModifyOptions {
+    export interface ModifyOptions {
         each?: boolean;
         once?: boolean;
         ref?: boolean;
         schema?: boolean;
     }
 
-    interface MutateRegisterOptions {
+    export interface MutateRegisterOptions {
         family?: any;
         key?: any;
     }
 
-    interface SetFlagOptions {
+    export interface SetFlagOptions {
         clone: boolean;
     }
 
-    interface CustomHelpers<V = any> {
+    export interface CustomHelpers<V = any> {
         schema: ExtensionBoundSchema;
         state: State;
         prefs: ValidationOptions;
@@ -654,17 +656,17 @@ declare namespace Joi {
         message: (messages: LanguageMessages, local?: Context) => ErrorReport;
     }
 
-    type CustomValidator<V = any> = (value: V, helpers: CustomHelpers) => V;
+    export type CustomValidator<V = any> = (value: V, helpers: CustomHelpers) => V;
 
-    type ExternalValidationFunction = (value: any) => any;
+    export type ExternalValidationFunction = (value: any) => any;
 
-    type SchemaLike = string | number | boolean | object | null | Schema | SchemaMap;
+    export type SchemaLike = string | number | boolean | object | null | Schema | SchemaMap;
 
-    type SchemaMap<TSchema = any> = {
+    export type SchemaMap<TSchema = any> = {
         [key in keyof TSchema]?: SchemaLike | SchemaLike[];
     };
 
-    type Schema = AnySchema
+    export type Schema = AnySchema
         | ArraySchema
         | AlternativesSchema
         | BinarySchema
@@ -677,9 +679,9 @@ declare namespace Joi {
         | LinkSchema
         | SymbolSchema;
 
-    type SchemaFunction = (schema: Schema) => Schema;
+    export type SchemaFunction = (schema: Schema) => Schema;
 
-    interface SchemaInternals {
+    export interface SchemaInternals {
         /**
          * Parent schema object.
          */
@@ -757,7 +759,7 @@ declare namespace Joi {
         $_validate(value: any, state: State, prefs: ValidationOptions): ValidationResult;
     }
 
-    interface AnySchema extends JoiObject {
+    export interface AnySchema extends JoiObject {
         /**
          * Flags of current schema.
          */
@@ -1115,7 +1117,7 @@ declare namespace Joi {
         when(ref: Schema, options: WhenSchemaOptions): this;
     }
 
-    interface Description {
+    export interface Description {
         type?: Types | string;
         label?: string;
         description?: string;
@@ -1131,14 +1133,14 @@ declare namespace Joi {
         [key: string]: any;
     }
 
-    interface Context {
+    export interface Context {
         [key: string]: any;
         key?: string;
         label?: string;
         value?: any;
     }
 
-    interface State {
+    export interface State {
         key?: string;
         path?: string;
         parent?: any;
@@ -1147,7 +1149,7 @@ declare namespace Joi {
         localize?(...args: any[]): State;
     }
 
-    interface BooleanSchema extends AnySchema {
+    export interface BooleanSchema extends AnySchema {
         /**
          * Allows for additional values to be considered valid booleans by converting them to false during validation.
          * String comparisons are by default case insensitive,
@@ -1170,7 +1172,7 @@ declare namespace Joi {
         truthy(...values: Array<string | number>): this;
     }
 
-    interface NumberSchema extends AnySchema {
+    export interface NumberSchema extends AnySchema {
         /**
          * Specifies that the value must be greater than limit.
          * It can also be a reference to another field.
@@ -1237,7 +1239,7 @@ declare namespace Joi {
         unsafe(enabled?: any): this;
     }
 
-    interface StringSchema extends AnySchema {
+    export interface StringSchema extends AnySchema {
         /**
          * Requires the string value to only contain a-z, A-Z, and 0-9.
          */
@@ -1402,12 +1404,12 @@ declare namespace Joi {
         uuid(options?: GuidOptions): this;
     }
 
-    interface SymbolSchema extends AnySchema {
+    export interface SymbolSchema extends AnySchema {
         // TODO: support number and symbol index
         map(iterable: Iterable<[string | number | boolean | symbol, symbol]> | { [key: string]: symbol }): this;
     }
 
-    interface ArraySortOptions {
+    export interface ArraySortOptions {
         /**
          * @default 'ascending'
          */
@@ -1415,7 +1417,7 @@ declare namespace Joi {
         by?: string | Reference;
     }
 
-    interface ArrayUniqueOptions extends HierarchySeparatorOptions {
+    export interface ArrayUniqueOptions extends HierarchySeparatorOptions {
         /**
          * if true, undefined values for the dot notation string comparator will not cause the array to fail on uniqueness.
          *
@@ -1424,9 +1426,9 @@ declare namespace Joi {
         ignoreUndefined?: boolean;
     }
 
-    type ComparatorFunction = (a: any, b: any) => boolean;
+    export type ComparatorFunction = (a: any, b: any) => boolean;
 
-    interface ArraySchema extends AnySchema {
+    export interface ArraySchema extends AnySchema {
         /**
          * Verifies that an assertion passes for at least one item in the array, where:
          * `schema` - the validation rules required to satisfy the assertion. If the `schema` includes references, they are resolved against
@@ -1497,12 +1499,12 @@ declare namespace Joi {
         unique(comparator?: string | ComparatorFunction, options?: ArrayUniqueOptions): this;
     }
 
-    interface ObjectPatternOptions {
+    export interface ObjectPatternOptions {
         fallthrough?: boolean;
         matches: SchemaLike | Reference;
     }
 
-    interface ObjectSchema<TSchema = any> extends AnySchema {
+    export interface ObjectSchema<TSchema = any> extends AnySchema {
         /**
          * Defines an all-or-nothing relationship between keys where if one of the peers is present, all of them are required as well.
          *
@@ -1616,7 +1618,7 @@ declare namespace Joi {
         xor(...peers: Array<string | HierarchySeparatorOptions>): this;
     }
 
-    interface BinarySchema extends AnySchema {
+    export interface BinarySchema extends AnySchema {
         /**
          * Sets the string encoding format if a string input is converted to a buffer.
          */
@@ -1638,7 +1640,7 @@ declare namespace Joi {
         length(limit: number | Reference): this;
     }
 
-    interface DateSchema extends AnySchema {
+    export interface DateSchema extends AnySchema {
         /**
          * Specifies that the value must be greater than date.
          * Notes: 'now' can be passed in lieu of date so as to always compare relatively to the current date,
@@ -1683,7 +1685,7 @@ declare namespace Joi {
         timestamp(type?: 'javascript' | 'unix'): this;
     }
 
-    interface FunctionSchema extends ObjectSchema {
+    export interface FunctionSchema extends ObjectSchema {
         /**
          * Specifies the arity of the function where:
          * @param n - the arity expected.
@@ -1708,7 +1710,7 @@ declare namespace Joi {
         maxArity(n: number): this;
     }
 
-    interface AlternativesSchema extends AnySchema {
+    export interface AlternativesSchema extends AnySchema {
         /**
          * Adds a conditional alternative schema type, either based on another key value, or a schema peeking into the current value.
          */
@@ -1727,7 +1729,7 @@ declare namespace Joi {
         try(...types: SchemaLike[]): this;
     }
 
-    interface LinkSchema extends AnySchema {
+    export interface LinkSchema extends AnySchema {
         /**
          * Same as `any.concat()` but the schema is merged after the link is resolved which allows merging with schemas of the same type as the resolved link.
          * Will throw an exception during validation if the merged types are not compatible.
@@ -1741,7 +1743,7 @@ declare namespace Joi {
         ref(ref: string): this;
     }
 
-    interface Reference extends Exclude<ReferenceOptions, 'prefix'> {
+    export interface Reference extends Exclude<ReferenceOptions, 'prefix'> {
         depth: number;
         type: string;
         key: string;
@@ -1751,9 +1753,9 @@ declare namespace Joi {
         toString(): string;
     }
 
-    type ExtensionBoundSchema = Schema & SchemaInternals;
+    export type ExtensionBoundSchema = Schema & SchemaInternals;
 
-    interface RuleArgs {
+    export interface RuleArgs {
         name: string;
         ref?: boolean;
         assert?: (value: any) => boolean;
@@ -1765,9 +1767,9 @@ declare namespace Joi {
         normalize?(value: any): any;
     }
 
-    type RuleMethod = (...args: any[]) => any;
+    export type RuleMethod = (...args: any[]) => any;
 
-    interface ExtensionRule {
+    export interface ExtensionRule {
         /**
          * alternative name for this rule.
          */
@@ -1800,37 +1802,37 @@ declare namespace Joi {
         manifest?: boolean;
     }
 
-    interface CoerceResult {
+    export interface CoerceResult {
         errors?: ErrorReport[];
         value?: any;
     }
 
-    type CoerceFunction = (value: any, helpers: CustomHelpers) => CoerceResult;
+    export type CoerceFunction = (value: any, helpers: CustomHelpers) => CoerceResult;
 
-    interface CoerceObject {
+    export interface CoerceObject {
         method: CoerceFunction;
         from?: string | string[];
     }
 
-    interface ExtensionFlag {
+    export interface ExtensionFlag {
         setter?: string;
         default?: any;
     }
 
-    interface ExtensionTermManifest {
+    export interface ExtensionTermManifest {
         mapped: {
             from: string;
             to: string;
         };
     }
 
-    interface ExtensionTerm {
+    export interface ExtensionTerm {
         init: any[] | null;
         register?: any;
         manifest?: Record<string, 'schema' | 'single' | ExtensionTermManifest>;
     }
 
-    interface Extension {
+    export interface Extension {
         type: string;
         args?(...args: SchemaLike[]): Schema;
         base?: Schema;
@@ -1855,15 +1857,15 @@ declare namespace Joi {
         properties?: Record<string, any>;
     }
 
-    type ExtensionFactory = (joi: Root) => Extension;
+    export type ExtensionFactory = (joi: Root) => Extension;
 
-    interface Err extends JoiObject {
+    export interface Err extends JoiObject {
         toString(): string;
     }
 
     // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-    interface Root {
+    export interface Root {
         /**
          * Current version of the joi package.
          */
